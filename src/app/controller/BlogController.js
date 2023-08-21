@@ -59,6 +59,20 @@ class BlogController {
       .catch(next);
   }
 
+  storeVer2(req, res, next) {
+    const frmData = {
+      title: req.body.title,
+      desc: req.body.desc,
+      image: req.body.image,
+      slug: req.body.title.toLowerCase().replace(/\s+/g, "-"),
+    };
+    const blog = new Blog(frmData.blog);
+    blog.save();
+    res
+      .send("SAVE")
+      .then(() => res.redirect(res.redirect("/blog/" + frmData.slug)))
+      .catch(next);
+  }
   // [GET] /blog/edit/_id
   edit(req, res, next) {
     Blog.findOne({ _id: req.params._id })
