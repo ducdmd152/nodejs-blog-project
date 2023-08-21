@@ -5,7 +5,7 @@ class BlogController {
   // [GET] /blog/:slug
   show(req, res, next) {
     Blog.findOne({ slug: req.params.slug })
-      .then((blog) => res.json(blog))
+      .then((blog) => res.render("blogs/show"))
       .catch(next);
   }
 }
