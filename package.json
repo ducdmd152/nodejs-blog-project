@@ -8,7 +8,8 @@
     "watch": "node-sass --watch src/resources/scss/ -o src/public/css/",
     "beautify": "prettier --single-quote --trailing-comma all --write src/**/*.{js,json,scss}",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "lint-staged": "prettier --single-quote --trailing-comma all --write src/**/*.{js,json,scss}"
   },
   "repository": {
     "type": "git",
@@ -22,6 +23,11 @@
   "homepage": "https://github.com/ducdmd152/nodejs-blog-project#readme",
   "lint-staged": {
     "src/**/*.{js,json,scss}": "prettier --single-quote --trailing-comma all --write"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   },
   "dependencies": {
     "express": "^4.18.2",
