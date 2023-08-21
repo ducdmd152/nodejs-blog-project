@@ -31,5 +31,5 @@ app.set("views", "./src/resources/views");
 route(app);
 
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
+  console.log(`App listening on port ${port}`);
 });
