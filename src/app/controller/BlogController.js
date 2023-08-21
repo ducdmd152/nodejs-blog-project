@@ -72,18 +72,21 @@ class BlogController {
 
   // [POST] /blog/store
   update(req, res, next) {
+    const objectIdToUpdate = req.body._id;
+    const updateInfo = {
+      title: req.body.title,
+      desc: req.body.desc,
+      image: req.body.image,
+      slug: req.body.title.toLowerCase().replace(/\s+/g, "-"),
+    };
+
     Blog.updateOne(
-      { _id: req.params._id }, // Your criteria for finding the document to update
-      {
-        title: req.body.title,
-        desc: req.body.desc,
-        image: req.body.image,
-        slug: req.body.title.toLowerCase().replace(/\s+/g, "-"),
-      } // The update you want to perform
+      { _id: objectIdToUpdate },
+      // Your criteria for finding the document to update
+      updateInfo, // The update you want to perform
+      { new: true }
     )
-      .then((blog) => {
-        res.json(blog);
-      })
+      .then((blog) => res.redirect("/blog/" + updateInfo.slug))
       .catch(next);
   }
 }

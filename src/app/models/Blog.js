@@ -8,6 +8,7 @@ const Blog = new Schema({
   title: { type: String, maxLength: 255 },
   desc: { type: String, maxLength: 600 },
   date: { type: Date, default: Date.now },
+  image: String,
   slug: String,
 });
 
