@@ -58,6 +58,34 @@ class BlogController {
       )
       .catch(next);
   }
+
+  // [GET] /blog/edit/_id
+  edit(req, res, next) {
+    Blog.findOne({ _id: req.params._id })
+      .then((blog) =>
+        res.render("blogs/edit", {
+          blog: singleMongooseToObject(blog),
+        })
+      )
+      .catch(next);
+  }
+
+  // [POST] /blog/store
+  update(req, res, next) {
+    Blog.updateOne(
+      { _id: req.params._id }, // Your criteria for finding the document to update
+      {
+        title: req.body.title,
+        desc: req.body.desc,
+        image: req.body.image,
+        slug: req.body.title.toLowerCase().replace(/\s+/g, "-"),
+      } // The update you want to perform
+    )
+      .then((blog) => {
+        res.json(blog);
+      })
+      .catch(next);
+  }
 }
 
 module.exports = new BlogController();
