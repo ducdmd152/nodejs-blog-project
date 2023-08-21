@@ -8,6 +8,11 @@ const path = require('path')
 // app.use(express.static('./src/public'))
 app.use(express.static(path.join(__dirname, '/public')))
 
+// add middleware to pre-handle param to body
+app.use(express.urlencoded({
+  extended: true
+}))
+app.use(express.json())
 
 app.use(morgan('combined'))
 app.engine('hbs', handlebars.engine({extname: '.hbs'}))
