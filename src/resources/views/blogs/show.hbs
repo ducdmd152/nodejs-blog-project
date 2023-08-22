@@ -5,11 +5,18 @@
         <div class="col col-lg-9 col-md-9 col-sm-12">
             <div class="row ">
                 <h2>{{blog.title}}</h2>
-                <button class="ml-4">
-                    <a href="/blog/edit/{{blog._id}}">
+                <a href="/blog/edit/{{blog._id}}">
+                    <button class="ml-4 btn btn-outline-primary">
+
                         Edit
-                    </a>
-                </button>
+
+                    </button>
+                </a>
+
+                <form action="/blog/delete" class="ml-2" method="POST">
+                    <input type="hidden" name="_id" value="{{blog._id}}">
+                    <button type="submit" class="btn btn-outline-danger">Delete</button>
+                </form>
             </div>
 
             <i style="color: gray"><strong>Posted time: {{blog.postedTime}}</strong></i>

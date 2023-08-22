@@ -6,6 +6,7 @@ const blogController = require("../app/controller/BlogController");
 router.get("/create", blogController.create);
 router.post("/store", blogController.store);
 router.post("/update", blogController.update);
+router.post("/delete", blogController.delete);
 router.get("/edit/:_id", blogController.edit);
 router.get("/:slug", blogController.show);
 

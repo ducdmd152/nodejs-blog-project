@@ -103,6 +103,12 @@ class BlogController {
       .then((blog) => res.redirect("/blog/" + updateInfo.slug))
       .catch(next);
   }
+
+  delete(req, res, next) {
+    Blog.deleteOne({ _id: req.body._id })
+      .then((blog) => res.redirect("/"))
+      .catch(next);
+  }
 }
 
 module.exports = new BlogController();
